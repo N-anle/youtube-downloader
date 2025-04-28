@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Downloader</title>
+    <link rel="stylesheet" href="{% static 'main_style.css' %}">
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if title %}
+        <h1>{{title}}</h1>
+        <img src="{{thumbnail}}" alt="" srcset="">
+        <form action="{% url 'download' yt_vid.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Download</button>
+        </form>
+    {% endif %}
+
+</body>
+</html>
